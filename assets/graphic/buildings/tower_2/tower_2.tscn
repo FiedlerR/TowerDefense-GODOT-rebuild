@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/graphic/buildings/tower.gd" type="Script" id=1]
+[ext_resource path="res://assets/objects/health_foreground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/graphic/buildings/tower_platform.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphic/buildings/health_background.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphic/buildings/tower_2/tower_2.png" type="Texture" id=5]
+[ext_resource path="res://assets/sound/shoot.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 448.0
+
+[node name="Tower" type="Node2D"]
+script = ExtResource( 1 )
+towerTurnSpeed = 5
+projectileDamage = 20.0
+fireRate = 0.3
+
+[node name="towerAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+bus = "Sfx"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 1025
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="groundSprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="towerSprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="Node2D" type="Node2D" parent="towerSprite"]
+position = Vector2( 0, 24 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="health_background" type="Sprite" parent="towerSprite/Node2D"]
+position = Vector2( 0, 3.75 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="health_foreground" parent="towerSprite/Node2D" instance=ExtResource( 2 )]
+
+[node name="fireRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fireRange"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="fireRange" to="." method="_on_fireRange_body_entered"]
+[connection signal="body_exited" from="fireRange" to="." method="_on_fireRange_body_exited"]

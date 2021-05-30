@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/DST-TowerDefenseTheme_1.mp3-d9323a8d806ae77631fa2b81d3afdb91.mp3str"
+
+[deps]
+
+source_file="res://assets/music/DST-TowerDefenseTheme_1.mp3"
+dest_files=[ "res://.import/DST-TowerDefenseTheme_1.mp3-d9323a8d806ae77631fa2b81d3afdb91.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

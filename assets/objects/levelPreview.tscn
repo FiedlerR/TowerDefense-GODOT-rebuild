@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/graphic/gui/guiElement_4.png" type="Texture" id=1]
+[ext_resource path="res://assets/level/level_1/preview.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphic/gui/fontstyle_button.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 1000, 800 )
+
+[node name="Panel" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+rect_scale = Vector2( 1, 0.984695 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -768.0
+margin_top = -442.876
+margin_right = 768.0
+margin_bottom = 459.124
+rect_scale = Vector2( 1, 0.984695 )
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+margin_left = -8.0
+margin_top = 49.5038
+margin_right = 1536.0
+margin_bottom = 829.504
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="highscore" type="Label" parent="."]
+margin_left = 264.0
+margin_top = 926.175
+margin_right = 554.0
+margin_bottom = 971.175
+custom_fonts/font = ExtResource( 3 )
+text = "Highscore: 352532363227376"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/graphic/enemies/enemy_2/enemy_2.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/graphic/enemies/enemy.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 14.1648 )
+
+[node name="enemy_2" type="PathFollow2D"]
+z_index = 20
+loop = false
+script = ExtResource( 2 )
+defaultSpeed = 100
+healthpoints = 400
+scorepoints = 50
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+collision_layer = 2049
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+frames = ExtResource( 1 )
+animation = "walk"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
