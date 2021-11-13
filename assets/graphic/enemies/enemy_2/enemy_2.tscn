@@ -11,7 +11,7 @@ z_index = 20
 loop = false
 script = ExtResource( 2 )
 defaultSpeed = 100
-healthpoints = 400
+healthpoints = 800
 scorepoints = 50
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
@@ -20,7 +20,7 @@ collision_layer = 2049
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 frames = ExtResource( 1 )
 animation = "walk"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]

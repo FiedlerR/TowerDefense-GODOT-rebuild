@@ -4,15 +4,12 @@
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
-load_path = "res://.import/enemy_1_1.png-47b8bfc9b170247673daa8d0d50035e8.stex"
 
 [sub_resource type="StreamTexture" id=2]
 flags = 4
-load_path = "res://.import/enemy_1_2.png-c68e6e55124ed96ee11c4d2f26755031.stex"
 
 [sub_resource type="StreamTexture" id=3]
 flags = 4
-load_path = "res://.import/enemy_1_3.png-f22a1ee843f12dae938d6d75c2dcaa15.stex"
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -31,6 +28,7 @@ z_index = 2000
 loop = false
 script = ExtResource( 1 )
 defaultSpeed = 130
+healthpoints = 125
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 collision_layer = 2049
@@ -38,6 +36,7 @@ collision_layer = 2049
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 frames = SubResource( 4 )
 animation = "walk"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]

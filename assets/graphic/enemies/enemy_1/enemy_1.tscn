@@ -11,6 +11,7 @@ z_index = 20
 loop = false
 script = ExtResource( 2 )
 defaultSpeed = 130
+healthpoints = 125
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 collision_layer = 2049

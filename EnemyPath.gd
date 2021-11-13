@@ -7,7 +7,8 @@ var enemyPresets = [
 	preload("res://assets/graphic/enemies/enemy_1/enemy_1.tscn"),
 	preload("res://assets/graphic/enemies/enemy_2/enemy_2.tscn"),
 	preload("res://assets/graphic/enemies/enemy_3/enemy_3.tscn"),
-	preload("res://assets/graphic/enemies/enemy_4/enemy_4.tscn")
+	preload("res://assets/graphic/enemies/enemy_4/enemy_4.tscn"),
+	preload("res://assets/graphic/enemies/enemy_5/enemy_5.tscn")
 ]
 var wave = 0
 var spawnList = []
@@ -46,11 +47,11 @@ func _process(delta):
 			waveDelay = waveDelayValue
 		else:
 			if wave == 1:
-				spawnList = [1,1,1,1,1,1]
+				spawnList = [5,1,1,1,1,1]
 			elif wave == 2:
 				spawnList = [1,1,1,1,1,1,1,1,1,1,1,1]
 			elif wave == 3:
-				spawnList = [1,1,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,2]
+				spawnList = [5,1,1,1,2,1,1,1,1,1,1,1,2,1,1,1,1,2]
 			elif wave == 4:
 				spawnList = [2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1]
 			elif wave == 5:
@@ -66,11 +67,11 @@ func _process(delta):
 				2,2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,3,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 				1,1]
 			elif wave == 9:
-				spawnList = [4,3,2,1,4,3,2,1,4,3,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,
-				2,4,1,1,1,1,1,4,1,1,1,1,1,1,1,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4]
+				spawnList = [4,3,2,1,4,3,2,5,4,3,2,1,1,1,1,1,1,2,2,2,2,2,5,2,2,2,2,2,
+				2,4,1,1,1,1,1,4,1,1,1,1,1,1,1,5,3,3,3,3,3,3,5,3,3,3,3,3,3,5,3,3,3,4]
 			elif wave == 10:
-				spawnList = [4,3,2,1,4,3,2,1,4,3,2,4,4,4,4,4,4,2,3,2,3,2,3,2,3,2,3,2,
-				3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4]
+				spawnList = [4,3,2,1,4,3,2,5,4,3,2,5,4,4,4,5,4,4,2,3,2,3,2,3,2,3,2,3,2,
+				3,4,4,5,4,4,4,4,4,5,4,4,4,5,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4]
 			elif wave > 10:
 				create_spawn_list();
 			remainingEnemies = spawnList.size()
@@ -95,7 +96,8 @@ func create_spawn_list():
 	
 	for i in range(wave*2):
 		var random = randf()
-
+		if random < 0.40:
+			spawnList.append(5)
 		if random < 0.85:
 			spawnList.append(4)
 		elif random < 0.90:

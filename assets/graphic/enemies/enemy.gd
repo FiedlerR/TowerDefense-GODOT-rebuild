@@ -25,7 +25,12 @@ func _process(delta):
 
 func takeDamage(damage):
 	if alive:
+		if get_node_or_null("KinematicBody2D/Node2D") && !get_node("KinematicBody2D/Node2D").visible:
+			get_node("KinematicBody2D/Node2D").visible = true
+			get_node("KinematicBody2D/Node2D/health_foreground").max_value = healthpoints
 		healthpoints -= damage
+		if get_node_or_null("KinematicBody2D/Node2D"):
+			get_node("KinematicBody2D/Node2D/health_foreground").value = healthpoints
 		if healthpoints <= 0:
 			var fadeText_temp = fadeTextPreset.instance()
 			fadeText_temp.get_node("fadeText").value = "+" + String(scorepoints)

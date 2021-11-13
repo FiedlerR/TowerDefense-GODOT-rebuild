@@ -1,16 +1,21 @@
 extends PathFollow2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var airplanePreset = [
 	preload("res://assets/graphic/effects/airplane_formation_1.tscn"),
 	preload("res://assets/graphic/effects/airplane_formation_2.tscn"),
 	preload("res://assets/graphic/effects/airplane_formation_3.tscn"),
-	preload("res://assets/graphic/effects/airplane_formation_4.tscn")
+
 	]
+
+var bomberPreset = [
+		preload("res://assets/graphic/effects/bomber_formation_1.tscn"),
+		preload("res://assets/graphic/effects/bomber_formation_2.tscn"),
+		preload("res://assets/graphic/effects/bomber_formation_3.tscn")
+];
+
 var spawnTimer = 0;
+var spawnCooldown = 4;
+var probabilityForBomber = 0.1;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,13 +50,25 @@ func _process(delta):
 		var spawnAngle = rng.randi_range(minSpawnAngle, maxSpawnAngle)
 		var direction = Vector2(cos(spawnAngle), sin(spawnAngle))
 		
-		var presetId = randi() % airplanePreset.size() - 1
-		var airplane_temp = airplanePreset[presetId].instance()
+		var airplane_temp;
+		var presetId;
+		var spawnType = randf()
+		if spawnType < probabilityForBomber:
+			presetId = randi() % bomberPreset.size() - 1;
+			airplane_temp = bomberPreset[presetId].instance()
+		else:
+			presetId = randi() % airplanePreset.size() - 1;
+			airplane_temp = airplanePreset[presetId].instance()
+
 		for airplane in airplane_temp.get_children():
 			airplane.rotation_degrees = spawnAngle
 		airplane_temp.global_position = global_position #Vector2(500,500) 
 		get_parent().add_child(airplane_temp)
-		spawnTimer = 4
+		spawnTimer = spawnCooldown;
+		if spawnCooldown > 1:
+			spawnCooldown = spawnCooldown - 0.01;
+		if probabilityForBomber < 0.7:
+			probabilityForBomber = probabilityForBomber + 0.005
 	else:
 		spawnTimer -=delta
 		

@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/graphic/enemies/enemy_5/enemy_5_1.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/graphic/enemies/enemy.gd" type="Script" id=2]
+[ext_resource path="res://assets/graphic/enemies/enemy_5/enemy_5_2.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://assets/graphic/buildings/health_background.png" type="Texture" id=4]
+[ext_resource path="res://assets/objects/health_foreground.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 26, 19 )
+
+[node name="enemy_5" type="PathFollow2D"]
+z_index = 20
+loop = false
+script = ExtResource( 2 )
+defaultSpeed = 60
+healthpoints = 4000
+scorepoints = 250
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+collision_layer = 2049
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+frames = ExtResource( 1 )
+animation = "walk"
+playing = true
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="KinematicBody2D"]
+frames = ExtResource( 3 )
+animation = "walk"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 0, 4.76837e-07 )
+shape = SubResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="KinematicBody2D"]
+visible = false
+position = Vector2( -30, 0 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="health_background" type="Sprite" parent="KinematicBody2D/Node2D"]
+position = Vector2( -0.49905, 3.8768 )
+scale = Vector2( 0.67176, 0.248719 )
+texture = ExtResource( 4 )
+
+[node name="health_foreground" parent="KinematicBody2D/Node2D" instance=ExtResource( 5 )]
+margin_left = -22.0
+margin_top = 2.0
+margin_right = 42.0
+margin_bottom = 17.0
+rect_scale = Vector2( 0.672, 0.25 )
+value = 100.0

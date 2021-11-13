@@ -10,7 +10,7 @@ extents = Vector2( 10, 14.1648 )
 z_index = 20
 loop = false
 script = ExtResource( 2 )
-healthpoints = 800
+healthpoints = 1300
 scorepoints = 150
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]

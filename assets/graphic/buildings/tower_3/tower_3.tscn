@@ -17,7 +17,7 @@ radius = 512.063
 script = ExtResource( 1 )
 towerTurnSpeed = 5
 projectilePreset = ExtResource( 6 )
-projectileDamage = 200.0
+projectileDamage = 400.0
 
 [node name="towerAudio" type="AudioStreamPlayer2D" parent="."]
 bus = "Sfx"

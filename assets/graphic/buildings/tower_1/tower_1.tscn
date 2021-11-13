@@ -17,6 +17,7 @@ radius = 448.071
 script = ExtResource( 5 )
 towerTurnSpeed = 5
 projectileDamage = 25.0
+fireRate = 1.0
 
 [node name="towerAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
