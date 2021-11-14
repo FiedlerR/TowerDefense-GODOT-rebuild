@@ -45,7 +45,7 @@ func _ready():
 	buildingGhost = get_node("building_ghost")
 	scoreLabel = get_node("/root/Level/HUD/Control/score")
 	healthLabel = get_node("/root/Level/HUD/Control/health")
-	score(500)
+	score(700)
 
 func _process(delta):
 	if buildMode:

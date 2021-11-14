@@ -37,4 +37,4 @@ func redraw_ground():
 
 
 func _on_Area2D_body_entered(body):
-	body.get_parent().damage(20)
+	body.get_parent().takeDamage(20)

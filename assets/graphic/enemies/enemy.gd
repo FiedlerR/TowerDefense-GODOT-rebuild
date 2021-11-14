@@ -4,14 +4,18 @@ export var defaultSpeed = 80
 export var healthpoints = 100
 export var damagepoints = 10
 export var scorepoints = 20
+export var showExplosionEffect = false
+export var explosionEffect = preload ("res://assets/graphic/effects/explosion.tscn")
 var gameManager
 var alive = true
 signal enemy_despawned
 var fadeTextPreset = preload("res://assets/objects/fadeText.tscn")
+var levelNode
 
 func _ready():
 	gameManager = get_node("/root/Level/gameManager")
-
+	levelNode = get_node("/root/Level")
+	
 func _process(delta):
 	if alive:
 		set_offset(get_offset() + defaultSpeed * delta)
@@ -32,6 +36,10 @@ func takeDamage(damage):
 		if get_node_or_null("KinematicBody2D/Node2D"):
 			get_node("KinematicBody2D/Node2D/health_foreground").value = healthpoints
 		if healthpoints <= 0:
+			if showExplosionEffect:
+				var explosionEffect_temp = explosionEffect.instance()
+				explosionEffect_temp.position = get_global_position()
+				levelNode.add_child(explosionEffect_temp)
 			var fadeText_temp = fadeTextPreset.instance()
 			fadeText_temp.get_node("fadeText").value = "+" + String(scorepoints)
 			fadeText_temp.position = position

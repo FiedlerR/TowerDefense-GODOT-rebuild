@@ -13,11 +13,13 @@ var sellValue = 0
 export var maxHealth = 100.0
 export var health = 100.0
 var explosionPreset = preload("res://assets/graphic/effects/explosion.tscn")
+var levelNode
 
 func _ready():
 	towerAudio = get_node("towerAudio")
 	towerSprite = get_node("towerSprite")
 	health = maxHealth
+	levelNode = get_node("/root/Level")
 	get_node("towerSprite/Node2D/health_foreground").value = maxHealth
 	get_node("towerSprite/Node2D/health_foreground").max_value = maxHealth
 
@@ -35,15 +37,13 @@ func _process(delta):
 		
 		var targetX = targetsInRange[0].get_parent().get_position().x
 		var targetY = targetsInRange[0].get_parent().get_position().y
-		#var targetX = get_viewport().get_mouse_position().x
-		#var targetY = get_viewport().get_mouse_position().y
+
 		var distX = targetX - towerSprite.get_parent().get_position().x
 		var distY = targetY - towerSprite.get_parent().get_position().y
 		var targetRotation = rad2deg(atan2(distY,distX)) + 90;
 
 		var rotation = towerSprite.rotation_degrees
 
-		#print(String(targetRotation) +" | "+String(rotation))
 		if targetRotation > 180 && rotation < 0:
 			if rotation <=-90:
 				towerSprite.rotation_degrees = 270
@@ -67,14 +67,13 @@ func _process(delta):
 		if difference < 5:
 			if fireDelay <= 0:
 				if Engine.time_scale == 1 || GlobalSettings.twoXSound:
-					$towerAudio.play()
+					towerAudio.play()
 				var projectile_temp = projectilePreset.instance()
 				projectile_temp.rotation_degrees = towerSprite.rotation_degrees
-				projectile_temp.direction = towerSprite.get_parent().get_position().direction_to(targetsInRange[0].get_parent().get_position())
-				projectile_temp.position = projectile_temp.get_position() + projectile_temp.direction*32
+				projectile_temp.direction = towerSprite.get_global_position().direction_to(targetsInRange[0].get_parent().get_position())
+				projectile_temp.position = towerSprite.get_global_position() + projectile_temp.direction * 32
 				projectile_temp.damage = projectileDamage
-				#print(targetsInRange[0].get_parent().rotation_degrees)
-				add_child(projectile_temp)
+				levelNode.add_child(projectile_temp)
 				fireDelay = fireRate
 			else:
 				fireDelay = fireDelay - delta
@@ -90,7 +89,7 @@ func _on_fireRange_body_exited(body):
 func sell():
 	queue_free()
 	
-func damage(damage):
+func takeDamage(damage):
 	health -= damage
 	if health <= 0:
 		var explosion_temp = explosionPreset.instance()

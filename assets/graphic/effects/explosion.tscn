@@ -17,6 +17,8 @@ animations = [ {
 } ]
 
 [node name="explosion" type="Node2D"]
+z_index = 40
+z_as_relative = false
 script = ExtResource( 10 )
 timeTolive = 0.5
 

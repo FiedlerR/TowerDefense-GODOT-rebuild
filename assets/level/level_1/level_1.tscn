@@ -13,13 +13,13 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -176, 288, 0, 0, 0, 0, 800, 288, 0, 0, 0, 0, 800, 544, 0, 0, 0, 0, 1312, 544, 0, 0, 0, 0, 1312, 800, 0, 0, 0, 0, 800, 800, 0, 0, 0, 0, 800, 1280 )
+"points": PoolVector2Array( 0, 0, 0, 0, -176, 288, 0, 0, 0, 0, 768, 288, 0, 0, 0, 0, 800, 320, 0, 0, 0, 0, 800, 512, 0, 0, 0, 0, 832, 544, 0, 0, 0, 0, 1280, 544, 0, 0, 0, 0, 1312, 576, 0, 0, 0, 0, 1312, 768, 0, 0, 0, 0, 1280, 800, 0, 0, 0, 0, 832, 800, 0, 0, 0, 0, 800, 832, 0, 0, 0, 0, 800, 1280 )
 }
 
 [node name="Level" type="Node2D"]
 
 [node name="gameManager" parent="." instance=ExtResource( 6 )]
-score = 500
+score = 100
 
 [node name="EnemyPath" type="Path2D" parent="."]
 z_index = 1
